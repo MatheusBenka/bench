@@ -1,5 +1,5 @@
 import time
-
+import datetime
 class Main:
     matrixA = []
     matrixB = []
@@ -33,18 +33,17 @@ class Main:
                     somaprod +=self.matrixA[i][j] * self.matrixB[k][j]
                 self.matrixR[i][j] = somaprod
 
-print("teste")
-tam = 1000
+#{500, 1000, 1500, 2000, 2500, 3000}
+tam = 3000
+tipo = "float"
 M = Main()
-M.SetarMatrix(tam= tam, valor=5)
-#M.SetarMatrix(tam=tam,valor=float(5))
+#M.SetarMatrix(tam= tam, valor=5)
+M.SetarMatrix(tam=tam,valor=float(5))
 
-inicio = time.time()
+inicioDT = datetime.datetime.now();
 M.Calcular(tam = tam)
-fim = time.time()
-
+fimDT = datetime.datetime.now()
+deltaDT = fimDT - inicioDT
 #M.MostrarMatrix(tam=tam)
 
-print('duracao %f' % (fim - inicio))
-
-print("fim")
+print('duracao %f milissegundos para %2d com %s ' %(deltaDT.total_seconds() *1000,tam,tipo) )

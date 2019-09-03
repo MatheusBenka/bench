@@ -40,6 +40,7 @@ void SetarMatrixI(short int tam, short int valor,  short int matrixA[tam][tam], 
             matrixB[l][c] = valor;
         }
     }
+
 }
 
 
@@ -81,7 +82,7 @@ void CalcularI(short int tam, short int matrixA[tam][tam] ,short int matrixB[tam
             somaprod=0;
             for(K=0; K<tam; K++)
             {
-                somaprod+=matrixA[L][K]*matrixB[K][C];
+                somaprod+=matrixA[L][C]*matrixB[K][C];
             }
             matrixIR[L][C]=somaprod;
         }
@@ -100,7 +101,7 @@ void CalcularF(short int tam, float matrixA[tam][tam] ,float matrixB[tam][tam],f
             somaprod=0;
             for(K=0; K<tam; K++)
             {
-                somaprod+=matrixA[L][K]*matrixB[K][C];
+                somaprod+=matrixA[L][C]*matrixB[K][C];
             }
             matrixIR[L][C]=somaprod;
         }
@@ -118,7 +119,7 @@ void CalcularD(short int tam, double matrixA[tam][tam] ,double matrixB[tam][tam]
             somaprod=0;
             for(K=0; K<tam; K++)
             {
-                somaprod+=matrixA[L][K]*matrixB[K][C];
+                somaprod+=matrixA[L][C]*matrixB[K][C];
             }
             matrixIR[L][C]=somaprod;
         }
@@ -126,26 +127,22 @@ void CalcularD(short int tam, double matrixA[tam][tam] ,double matrixB[tam][tam]
 }
 
 
-int main(int argc,char *argv[]) {
+int main() {
 
     //{500, 1000, 1500, 2000, 2500, 3000}
-    short int tam = 10;
+    int tam = 1500;
 
     short int matrixIA [tam][tam];
     short int matrixIB [tam][tam];
     short int matrixIR [tam][tam];
 
-    float matrixFA [tam][tam];
+    /*float matrixFA [tam][tam];
     float matrixFB [tam][tam];
     float matrixFR [tam][tam];
-
-
-
     double matrixDA [tam][tam];
     double matrixDB [tam][tam];
     double matrixDR [tam][tam];
-
-
+*/
     SetarMatrixI(tam,5,matrixIA,matrixIB);
     //SetarMatrixF(tam,5,matrixFA,matrixFB);
 
@@ -155,8 +152,9 @@ int main(int argc,char *argv[]) {
     t = clock(); // short int
     CalcularI(tam,matrixIA, matrixIB,matrixIR);
     t =clock() - t;
-    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
-    printf("CalcularI() took %f seconds to execute \n", time_taken);
+    double time_taken = (double)(((double)t / CLOCKS_PER_SEC) * 1000); // in seconds
+    //time_taken = time_taken ;
+    printf("duracao %lf milissegundos para 3000 com inteiro \n", &time_taken);
 
   /*
     t = clock(); // float
